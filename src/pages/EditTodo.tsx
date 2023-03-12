@@ -2,8 +2,9 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import TodoActionCreator from "../redux/TodoActionCreator";
 import {connect} from 'react-redux';
-import { TodoStatesType, TodoItemType } from "../redux/TodoReducer";
+import { TodoItemType } from "../redux/TodoReducer";
 import {AnyAction, Dispatch} from 'redux';
+import { RootStatesType } from "../redux/AppStore";
 
 type PropsType = { 
   updateTodo: (id: number, todo: string, desc: string, done: boolean) => void;
@@ -82,8 +83,8 @@ const EditTodo = ({ todoList, updateTodo }: PropsType) => {
   );
 };
 
-const mapStateToProps = (state: TodoStatesType) => ({
-  todoList: state.todoList,
+const mapStateToProps = (state: RootStatesType) => ({
+  todoList: state.todos.todoList,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => ({
